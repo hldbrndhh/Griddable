@@ -1,0 +1,32 @@
+body {
+    font-family: "Belleza";
+    font-size: 2em;
+}
+
+#splash {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: #89beb7;
+}
+
+#splash-text {
+  margin-left: 2%;
+  margin-top: 2%;
+  color: #dc2d11;
+  text-align: center
+}
+
+#start-button {
+  background-color: #0f2d85;
+  width: 100px;
+  margin: auto;
+}
+
+#start-button h3 {
+  padding: 10px;
+  text-align: center
+}

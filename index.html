@@ -1,88 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Hello, world!</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <link rel="icon" href="img/favicon.png">
-</head>
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+<html>
+  <head>
+    <title>GridsAR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
 
-<style>
-  .arjs-loader {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+      	const sceneEl = document.querySelector('a-scene');
+        const arSystem = sceneEl.systems["mindar-image-system"];
+      	const exampleTarget = document.querySelector('#example-targets');
+        const startButton = document.querySelector("#start-button");
 
-  .arjs-loader div {
-    text-align: center;
-    font-size: 1.25em;
-    color: white;
-  }
-</style>
+        startButton.addEventListener('click', () => {
+          console.log("start");
+          document.querySelector("#splash").style.visibility = "hidden";
+          arSystem.start(); // start AR
+        });
 
-<body style="margin : 0px; overflow: hidden;">
-  <!-- minimal loader shown until image descriptors are loaded -->
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
+      	// arReady event triggered when ready
+      	sceneEl.addEventListener("arReady", (event) => {
+      	  console.log("MindAR is ready")
+      	});
 
-  <!-- a-frame scene -->
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-    <!-- a-nft is the anchor that defines an Image Tracking entity -->
-    <!-- on 'url' use the path to the Image Descriptors created before. -->
-    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-    <a-nft
-      type="nft"
-      url="./GridsAR/Images/NFTs/Demo_Image_1/Demo_Image_1"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5"
-    >
-      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-      <a-entity
-        gltf-model="3D_Models/RolledTower.gltf"
-        scale="2 2 2"
-        position="0 0 0"
-      >
+      	// detect target found
+      	exampleTarget.addEventListener("targetFound", event => {
+      	  console.log("target found");
+      	});
+
+      	// detect target lost
+      	exampleTarget.addEventListener("targetLost", event => {
+      	  console.log("target lost");
+      	});
+      });
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Belleza">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <a-scene mindar-image="imageTargetSrc: Images/MindAR_Compiled/targets.mind; autoStart: false" id="example-targets" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-assets>
+        <a-asset-item id="hillySurface" src="3D_Models/HillySurface.gltf"></a-asset-item>
+        <a-asset-item id="rolledTower" src="3D_Models/RolledTower.gltf"></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-gltf-model rotation="90 0 0 " position="0 0 0.3" scale="0.01 0.01 0.01" src="#hillySurface">
       </a-entity>
-    </a-nft>
 
-    <a-nft
-      type="nft"
-      url="./GridsAR/Images/NFTs/Demo_Image_2/Demo_Image_2"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5"
-    >
-      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-      <a-entity
-        gltf-model="3D_Models/HillySurface.gltf"
-        scale="3 3 3"
-        position="0 0 0"
-      >
+      <a-entity mindar-image-target="targetIndex: 1">
+        <a-gltf-model rotation="90 0 0 " position="0 0 0.4" scale="0.003 0.003 0.003" src="#rolledTower">
       </a-entity>
-    </a-nft>
-    <!-- static camera that moves according to the device movemenents -->
-    <a-entity camera></a-entity>
-  </a-scene>
-</body>
+
+    </a-scene>
+
+    <div id="splash">
+      <div id="splash-text">
+        <h2>GridsAR</h2>
+        <p>When you are ready, press the start button below and approach one of the images on the walls.
+        <p>Hold your camera up so that the image is in the scan area shown on your screen.
+        <p>
+        <div id="start-button" class="clickable">
+          <h3>Start</h3>
+        </div>
+      </div>
+    </div>
+
+  </body>
 </html>
