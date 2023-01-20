@@ -39,10 +39,13 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <a-scene mindar-image="imageTargetSrc: Images/MindAR_Compiled/targets.mind; autoStart: false; maxTrack: 1" id="example-targets" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-scene mindar-image="imageTargetSrc: Images/MindAR_Compiled/targets.mind; autoStart: false; maxTrack: 5" id="example-targets" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
         <a-asset-item id="hillySurface" src="3D_Models/HillySurface.gltf"></a-asset-item>
         <a-asset-item id="rolledTower" src="3D_Models/RolledTower.gltf"></a-asset-item>
+        <a-asset-item id="flatGrid" src="3D_Models/FlatGrid.gltf"></a-asset-item>
+        <a-asset-item id="cross" src="3D_Models/Cross.gltf"></a-asset-item>
+        <a-asset-item id="squareTower" src="3D_Models/Tower.gltf"></a-asset-item>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
@@ -53,6 +56,18 @@
 
       <a-entity mindar-image-target="targetIndex: 1">
         <a-gltf-model rotation="90 0 0 " position="0 0 0.4" scale="0.003 0.003 0.003" src="#rolledTower">
+      </a-entity>
+
+      <a-entity mindar-image-target="targetIndex: 2">
+        <a-gltf-model rotation="0 0 0 " position="0 0 0.4" scale="0.003 0.003 0.003" src="#flatGrid">
+      </a-entity>
+
+      <a-entity mindar-image-target="targetIndex: 3">
+        <a-gltf-model rotation="0 0 0 " position="0 0 0.4" scale="0.003 0.003 0.003" src="#cross">
+      </a-entity>
+
+      <a-entity mindar-image-target="targetIndex: 4">
+        <a-gltf-model rotation="0 0 0 " position="0 0 0.4" scale="0.003 0.003 0.003" src="#squareTower">
       </a-entity>
 
     </a-scene>
