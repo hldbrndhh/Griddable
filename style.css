@@ -10,19 +10,19 @@ body {
     top: 0;
     bottom: 0;
     left: 0;
-    background: #89beb7;
+    background: #000000;
 }
 
 #splash-text {
   margin-left: 2%;
   margin-top: 2%;
-  color: #dc2d11;
+  color: #ff3399;
   text-align: center
 }
 
 #start-button {
   background-color: #0f2d85;
-  width: 100px;
+  width: 150px;
   margin: auto;
 }
 
