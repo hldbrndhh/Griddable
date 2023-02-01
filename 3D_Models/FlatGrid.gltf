@@ -37,12 +37,12 @@
                 0,
                 0
             ],
-            "name" : "Colour.002",
+            "name" : "Colour.001",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0,
-                    0.5576860308647156,
-                    1,
+                    0,
+                    0,
                     1
                 ],
                 "metallicFactor" : 0,
@@ -52,7 +52,7 @@
     ],
     "meshes" : [
         {
-            "name" : "Cylinder.001",
+            "name" : "Cylinder.002",
             "primitives" : [
                 {
                     "attributes" : {
