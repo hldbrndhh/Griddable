@@ -1,6 +1,6 @@
 body {
     font-family: "Unbounded";
-    font-size: 1.4em;
+    font-size: 1.8em;
     height: 100%;
     width: 100%;
 }
@@ -9,8 +9,6 @@ body {
     width: 100vw;
     height: 100vh;
     align-items: center;
-    display: flex;
-    justify-content: center;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -20,22 +18,23 @@ body {
 
 #splash-text {
   margin-left: 2%;
-  margin-top: 2%;
+  margin-top: 35vh;
   color: #ff3399;
   text-align: center
 }
 
 #start-button {
-  background-color: #000;
+  background-color: #fff;
   width: fit-content;
   margin: auto;
 }
 
 #start-button:hover {
-  background-color: #fff;
+  background-color: #000;
 }
 
-#start-button h3 {
+#start-button h4 {
   padding: 10px;
+  font-size: 0.8em;
   text-align: center
 }
